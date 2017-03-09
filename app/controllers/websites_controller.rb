@@ -3,15 +3,8 @@ class WebsitesController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:find]
 
   def find
-    @website = Website.where(url: params[:url])
-
-    if @website.any?
-      @website = Website.where(url: params[:url]).first
-    else
-      @website = Website.create!(name: params[:url], url: params[:url])
-    end
-
-    @article = @website.articles.find_or_create_by(url: params[:href])
+    find_or_create_website
+    find_or_create_article
 
     respond_to do |format|
       format.json { render json: @article }
@@ -51,6 +44,22 @@ class WebsitesController < ApplicationController
 
   def find_website
     @website = Website.find(params[:id])
+  end
+
+  def find_or_create_website
+    if Website.where(url: params[:url]).any?
+      @website = Website.where(url: params[:url]).first
+    else
+      @website = Website.create!(name: params[:url], url: params[:url])
+    end
+  end
+
+  def find_or_create_article
+    if Article.where(url: params[:href]).any?
+      @article = Article.where(url: params[:href]).first
+    else
+      @article = Article.create!(url: params[:href])
+    end
   end
 
   def website_params
