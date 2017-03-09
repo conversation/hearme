@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>New Website</h1>
+
+  <%= render partial: "form" %>
+</div>
+
+<%= content_for :menu do %>
+  <li><%= link_to "Back", websites_path %></li>
+<% end %>

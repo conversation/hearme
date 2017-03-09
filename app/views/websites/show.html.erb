@@ -1,0 +1,15 @@
+<div class="container">
+  <h1><%= @website.name %></h1>
+  <h2><%= @website.url %></h2>
+
+  <ul>
+    <% @website.articles.each do |article| %>
+      <li><%= article.url %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= content_for :menu do %>
+  <li><%= link_to "Edit Website", edit_website_path(@website) %></li>
+  <li><%= link_to "Websites", websites_path %></li>
+<% end %>

@@ -1,0 +1,24 @@
+.menu-bar {
+  background: #eee;
+
+  ul {
+    @include clearfix;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    float: left;
+  }
+
+  a {
+    display: block;
+    background: #eee;
+    padding: 20px;
+
+    &:hover {
+      background: #fafafa;
+    }
+  }
+}

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :sites do
+  resources :websites do
+    collection do
+      post :find
+    end
+
     resources :articles
   end
 

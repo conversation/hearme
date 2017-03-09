@@ -1,0 +1,10 @@
+<div class="container">
+  <% @websites.each do |website| %>
+    <%= link_to website.name, website_path(website) %>
+  <% end %>
+</div>
+
+<%= content_for :menu do %>
+  <li><%= link_to "Websites", websites_path %></li>
+  <li><%= link_to "New Website", new_website_path %></li>
+<% end %>

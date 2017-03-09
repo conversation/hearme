@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Edit Website</h1>
+
+  <%= render partial: "form" %>
+  <%= button_to "Delete", website_path(@website), method: :delete, class: "button" %>
+</div>
+
+<%= content_for :menu do %>
+  <li><%= link_to "Back", websites_path %></li>
+<% end %>
