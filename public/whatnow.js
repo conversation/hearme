@@ -1,13 +1,10 @@
 function loadJQuery(){
-
   var waitForLoad = function () {
     if (typeof jQuery != "undefined") {
-      console.log("jquery loaded..");
+      console.log("WhatNow loaded");
       queryWebsite()
 
     } else {
-      console.log("jquery not loaded..");
-      // invoke any methods defined in your JS files to begin execution
       var oScriptElem = document.createElement("script");
       oScriptElem.type = "text/javascript";
       oScriptElem.src = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js";
@@ -32,7 +29,6 @@ function queryWebsite() {
       }
     }).done(function(data) {
       $(".content-body p").append("<a href='#' class='whatsnow-paragraph'>+</a>");
-
     });
   });
 }
