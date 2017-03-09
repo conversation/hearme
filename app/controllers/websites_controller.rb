@@ -7,7 +7,7 @@ class WebsitesController < ApplicationController
     find_or_create_article
 
     respond_to do |format|
-      format.json { render json: @article }
+      format.json { render json: [@website, @article] }
     end
   end
 
@@ -63,6 +63,6 @@ class WebsitesController < ApplicationController
   end
 
   def website_params
-    params.require(:website).permit(:name, :url)
+    params.require(:website).permit(:name, :url, :background_colour, :foreground_colour)
   end
 end

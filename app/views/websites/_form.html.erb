@@ -1,5 +1,7 @@
 <%= simple_form_for @website do |f| %>
   <%= f.input :name %>
   <%= f.input :url %>
+  <%= f.input :background_colour, input_html: { class: "jscolor" } %>
+  <%= f.input :foreground_colour, input_html: { class: "jscolor" } %>
   <%= f.submit %>
 <% end %>
