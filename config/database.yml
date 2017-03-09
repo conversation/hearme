@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  min_messages: warning
+
+development:
+  <<: *default
+  database: whatnow_development
+
+test:
+  <<: *default
+  database: whatnow_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['PGDATABASE'] %>
+  host: <%= ENV['PGHOST'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+  username: <%= ENV['PGUSER'] %>
+  pool: 5

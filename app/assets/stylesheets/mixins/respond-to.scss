@@ -1,0 +1,25 @@
+$small-max: 599px;
+$medium-min: 600px;
+$medium-max: 1199px;
+$large-min: 1200px;
+
+// Make styles apply only to a particular layout
+@mixin respond-to($media) {
+  @if $media == "small" {
+    @media only screen and (max-width: $small-max) {
+      @content;
+    }
+  }
+
+  @else if $media == "medium" {
+    @media only screen and (min-width: $medium-min) and (max-width: $medium-max) {
+      @content;
+    }
+  }
+
+  @else if $media == "large" {
+    @media only screen and (min-width: $large-min) {
+      @content;
+    }
+  }
+}

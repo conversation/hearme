@@ -1,0 +1,14 @@
+{
+  "name": "whatnow",
+  "description": "User comments for actionable ideas",
+  "keywords": [
+    "dokku",
+    "rails",
+    "whatnow"
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rake db:migrate"
+    }
+  }
+}
