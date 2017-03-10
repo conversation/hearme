@@ -46,10 +46,6 @@
   opacity: 1 !important;
 }
 
-.whatnow-paragraph-opened > svg {
-  opacity: 0;
-}
-
 .whatnow-actions {
   background: #eee;
   color: #333;
@@ -59,47 +55,47 @@
   width: 200px !important;
   right: 50px !important;
   top: 0 !important;
+  text-align: left !important;
 }
 
 .whatnow-actions:after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background: inherit;
-  position: absolute;
-  top: 15px;
-  right: -5px;
-  transform: rotate(45deg);
+  content: "" !important;
+  width: 10px !important;
+  height: 10px !important;
+  background: inherit !important;
+  position: absolute !important;
+  top: 15px !important;
+  right: -5px !important;
+  transform: rotate(45deg) !important;
 }
 
 .whatnow-button {
   cursor: pointer !important;
-  display: block;
+  display: block !important;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
-  font-size: 11px !important;
-  letter-spacing: 0.1em !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
   line-height: 1.35 !important;
-  padding: 10px;
+  padding: 10px !important;
   text-align: left !important;
   text-decoration: none !important;
   text-transform: uppercase !important;
+  border-bottom: 1px solid #fff !important;
 }
 
 .whatnow-count {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: normal !important;
   line-height: 1.35 !important;
+  font-size: 12px !important;
+  text-transform: none !important;
+  display: block !important;
 }
 
-.whatnow-tell-me-more {
-
-}
-
-.whatnow-make-it-clearer {
-
-}
-
-.whatnow-prove-it {
-
+.whatnow-count svg {
+  width: 27px !important;
+  height: 16px !important;
 }
 
 .whatnow-curtain {

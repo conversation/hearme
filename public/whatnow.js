@@ -91,9 +91,35 @@ function queryWebsite() {
             "' ></div>"
           );
 
-          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-tell-me-more'>Tell me more</a> <span class='whatnow-count'>" + tell_me_more + " other people also requested</span>");
-          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-make-it-clearer'>Make it clearer</a> <span class='whatnow-count'>" + make_it_clearer + " other people also requested</span>");
-          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-prove-it'>Prove it</a> <span class='whatnow-count'>" + prove_it + " other people also requested</span>");
+          var person = "<?xml version=1.0 encoding=utf-8?><svg style='fill: #" +
+          data[0]['foreground_colour'] +
+          "' version=1.1 id=Layer_1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink x=0px y=0px viewBox=0 0 20 20 style=enable-background:new 0 0 20 20; xml:space=preserve><g><path class=st0 d=M14.4,15.4H5.7c-0.3,0-0.5-0.2-0.5-0.5v-1.7c0-0.4,0.2-0.8,1.7-1.8c0.4-0.2,0.8-0.5,1.2-0.7c-0.4-0.5-0.6-1.1-0.6-1.7V7.4c0-1.5,1.2-2.6,2.6-2.6s2.7,1.2,2.7,2.6v1.6c0,0.7-0.2,1.3-0.7,1.8c1.1,0.6,2.8,1.6,2.8,2.4v1.7C14.9,15.1,14.7,15.4,14.4,15.4z/><path class=st0 d=M6.9,10.8c-0.2-0.1-0.5-0.3-0.6-0.4C6.7,9.9,7,9.1,7,8.3c0-1.5-1-2.6-2.3-2.6S2.4,6.8,2.4,8.3c0,0.8,0.2,1.5,0.6,2.1c-0.3,0.2-0.8,0.5-1.5,0.9c-0.6,0.4-0.9,1-0.9,1.7v0.5c0,0.5,0.3,0.8,0.8,0.8h3.4v-1.2C4.7,12.3,5.9,11.4,6.9,10.8z M5.3,11.1C5.3,11.1,5.3,11.1,5.3,11.1C5.3,11.1,5.3,11.1,5.3,11.1z M3.9,11.1L3.9,11.1L3.9,11.1z/><path class=st0 d=M19.5,13c0-0.8-0.5-1.4-1.3-1.8l0,0c0.1,0,0.1-0.1,0.2-0.2c0.1-0.2,0.1-0.4,0-0.5c0,0-0.3-0.7-0.4-1.3l0-1.1c0-1.3-1.1-2.4-2.3-2.4h0c-1.3,0-2.3,1.1-2.3,2.4l0,1.1c-0.1,0.6-0.4,1.3-0.4,1.3c0,0,0,0.1,0,0.1c0.9,0.5,2.5,1.5,2.5,2.5v1.2h3.4c0.4,0,0.8-0.4,0.8-0.8v-0.5C19.5,13.1,19.5,13,19.5,13z/></g></svg>"
+
+          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-tell-me-more'>Tell me more <span class='whatnow-count'></span></a>");
+          if (tell_me_more == 1) {
+            $(".whatnow-tell-me-more").find(".whatnow-count").html(person + tell_me_more + " other person also asked");
+          }
+          if (tell_me_more > 1) {
+            $(".whatnow-tell-me-more").find(".whatnow-count").html(person + tell_me_more + " other people also asked");
+          }
+
+          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-make-it-clearer'>Make it clearer <span class='whatnow-count'></span></a>");
+          if (make_it_clearer == 1) {
+            $(".whatnow-make-it-clearer").find(".whatnow-count").html(person + make_it_clearer + " other person also asked");
+          }
+          if (make_it_clearer > 1) {
+            $(".whatnow-make-it-clearer").find(".whatnow-count").html(person + make_it_clearer + " other people also asked");
+          }
+
+          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-prove-it'>Prove it <span class='whatnow-count'></span></a>");
+          if (prove_it == 1) {
+            $(".whatnow-prove-it").find(".whatnow-count").html(person + prove_it + " other person also asked");
+          }
+          if (prove_it > 1) {
+            $(".whatnow-prove-it").find(".whatnow-count").html(person + prove_it + " other people also asked");
+          }
+
+
           $("body").append("<a href='#' class='whatnow-curtain'></a>")
 
           $(".whatnow-tell-me-more").on("click", function(event) {
@@ -106,8 +132,13 @@ function queryWebsite() {
                 paragraph: $(event.currentTarget).parents("p").index(".content-body p")
               }
             }).done(function(data) {
-              var count = parseInt($(event.currentTarget).next("span.whatnow-count").html());
-              $(event.currentTarget).next("span.whatnow-count").html(count + 1 + " other people also requested");
+              var count = parseInt($(event.currentTarget).find(".whatnow-count").html() || 0);
+              if (count == 0) {
+                $(event.currentTarget).find(".whatnow-count").html("You've asked!");
+              }
+              if (count > 1) {
+                $(event.currentTarget).find(".whatnow-count").html(person + count + " other people also asked");
+              }
             });
           });
 
@@ -121,8 +152,13 @@ function queryWebsite() {
                 paragraph: $(event.currentTarget).parents("p").index(".content-body p")
               }
             }).done(function(data) {
-              var count = parseInt($(event.currentTarget).next("span.whatnow-count").html());
-              $(event.currentTarget).next("span.whatnow-count").html(count + 1 + " other people also requested");
+              var count = parseInt($(event.currentTarget).find(".whatnow-count").html() || 0);
+              if (count == 0) {
+                $(event.currentTarget).find(".whatnow-count").html("You've asked!");
+              }
+              if (count > 1) {
+                $(event.currentTarget).find(".whatnow-count").html(person + count + " other people also asked");
+              }
             });
           });
 
@@ -136,8 +172,13 @@ function queryWebsite() {
                 paragraph: $(event.currentTarget).parents("p").index(".content-body p")
               }
             }).done(function(data) {
-              var count = parseInt($(event.currentTarget).next("span.whatnow-count").html());
-              $(event.currentTarget).next("span.whatnow-count").html(count + 1 + " other people also requested");
+              var count = parseInt($(event.currentTarget).find(".whatnow-count").html() || 0);
+              if (count == 0) {
+                $(event.currentTarget).find(".whatnow-count").html("You've asked!");
+              }
+              if (count > 1) {
+                $(event.currentTarget).find(".whatnow-count").html(person + count + " other people also asked");
+              }
             });
           });
         }
