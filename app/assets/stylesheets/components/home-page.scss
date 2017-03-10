@@ -1,0 +1,30 @@
+.pages-home {
+  .heading {
+    background: #fafafa;
+    min-height: 300px;
+  }
+
+  .container {
+    img {
+      width: auto;
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
+  .logo {
+    svg {
+      float: left;
+      width: 300px;
+    }
+
+    h1 {
+      float: left;
+      margin-top: 100px;
+      font-size: 50px;
+      color: darken(#D8352A, 20%);
+    }
+  }
+
+
+}

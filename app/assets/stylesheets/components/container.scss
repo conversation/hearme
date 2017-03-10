@@ -16,6 +16,12 @@
   flex: 2 200%;
 }
 
+.top-down {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
 .side-by-side {
   @include clearfix;
   clear: both;

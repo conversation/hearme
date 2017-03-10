@@ -10,3 +10,11 @@ body {
   align-items: stretch;
   flex-direction: row;
 }
+
+a {
+  color: #D8352A;
+
+  &:visited {
+    color: darken(#D8352A, 10%)
+  }
+}
