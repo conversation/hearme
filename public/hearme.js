@@ -19,7 +19,7 @@ loadJQuery();
 
 function queryWebsite() {
   $.ajax({
-    url: "http://localhost:4000/websites/find",
+    url: "https://hearme.news/websites/find",
     context: document.body,
     method: "post",
     data: {
@@ -30,12 +30,12 @@ function queryWebsite() {
     }
   }).done(function(data) {
 
-    var articleUrl = "http://localhost:4000/websites/" + data[0].id + "/articles/" + data[1].id
+    var articleUrl = "https://hearme.news/websites/" + data[0].id + "/articles/" + data[1].id
 
     // Set up styling
     var stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = "http://localhost:4000/hearme.css";
+    stylesheet.href = "https://hearme.news/hearme.css";
     document.head.insertBefore(stylesheet, document.head.getElementsByTagName("script")[0])
 
     var paragraphSelections = $(".content-body p, .article__body p, .article-text p, .field-body p, .article-copy-container p, #story p");
