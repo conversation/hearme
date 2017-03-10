@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310004028) do
+ActiveRecord::Schema.define(version: 20170310033233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,10 +35,12 @@ ActiveRecord::Schema.define(version: 20170310004028) do
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
   create_table "websites", force: :cascade do |t|
-    t.string "name",              null: false
-    t.string "url",               null: false
-    t.string "background_colour"
-    t.string "foreground_colour"
+    t.string "name",                                 null: false
+    t.string "url",                                  null: false
+    t.string "background_colour", default: "dddddd"
+    t.string "foreground_colour", default: "ffffff"
+    t.string "position",          default: "right"
+    t.string "offset",            default: "50px"
   end
 
 end

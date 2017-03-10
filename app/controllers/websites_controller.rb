@@ -63,6 +63,6 @@ class WebsitesController < ApplicationController
   end
 
   def website_params
-    params.require(:website).permit(:name, :url, :background_colour, :foreground_colour)
+    params.require(:website).permit(:name, :url, :background_colour, :foreground_colour, :position, :offset)
   end
 end

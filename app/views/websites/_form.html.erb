@@ -1,6 +1,8 @@
 <%= simple_form_for @website do |f| %>
   <%= f.input :name %>
   <%= f.input :url %>
+  <%= f.input :position %>
+  <%= f.input :offset %>
   <%= f.input :background_colour, input_html: { class: "jscolor" } %>
   <%= f.input :foreground_colour, input_html: { class: "jscolor" } %>
   <%= f.submit %>
