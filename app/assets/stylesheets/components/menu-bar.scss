@@ -3,6 +3,13 @@
   flex: 1 120px;
   min-width: 120px;
 
+  svg {
+    width: 60px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+  }
+
   ul {
     @include clearfix;
     list-style: none;
