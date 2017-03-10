@@ -1,7 +1,9 @@
 <div class="container">
-  <% @websites.each do |website| %>
-    <%= link_to website.name, website_path(website) %>
-  <% end %>
+  <ul>
+    <% @websites.each do |website| %>
+      <li><%= link_to website.name, website_path(website) %></li>
+    <% end %>
+  </ul>
 </div>
 
 <%= content_for :menu do %>
