@@ -51,30 +51,43 @@
 }
 
 .whatnow-actions {
+  background: #eee;
+  color: #333;
+  cursor: default !important;
   position: absolute !important;
   z-index: 10000000 !important;
   width: 200px !important;
-  right: 20px !important;
+  right: 50px !important;
   top: 0 !important;
-  height: 40px;
 }
 
 .whatnow-actions:after {
-  content: "" !important;
-  display: table !important;
-  clear: both !important;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  position: absolute;
+  top: 15px;
+  right: -5px;
+  transform: rotate(45deg);
 }
 
 .whatnow-button {
+  cursor: pointer !important;
+  display: block;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
   font-size: 11px !important;
-  text-align: center !important;
-  width: 33% !important;
-  text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  float: left !important;
+  line-height: 1.35 !important;
+  padding: 10px;
+  text-align: left !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+}
+
+.whatnow-count {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
   line-height: 1.35 !important;
-  text-decoration: none !important;
 }
 
 .whatnow-tell-me-more {

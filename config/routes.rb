@@ -4,7 +4,11 @@ Rails.application.routes.draw do
       post :find
     end
 
-    resources :articles
+    resources :articles do
+      member do
+        post :action
+      end
+    end
   end
 
   get '/check.txt', to: proc {[200, {}, ['it_works']]}

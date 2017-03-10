@@ -6,4 +6,29 @@
   img {
     width: 100%;
   }
+
+  figure {
+    margin: 0;
+  }
+}
+
+.double-width {
+  flex: 2 200%;
+}
+
+.side-by-side {
+  @include clearfix;
+  clear: both;
+  border-bottom: 1px solid #eee;
+}
+
+.side-by-side-paragraph {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+}
+
+
+.side-by-side-paragraph + .side-by-side-paragraph {
+  padding-left: 20px;
 }

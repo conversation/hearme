@@ -7,7 +7,7 @@ class WebsitesController < ApplicationController
     find_or_create_article
 
     respond_to do |format|
-      format.json { render json: [@website, @article] }
+      format.json { render json: [@website, @article, @article.actions] }
     end
   end
 

@@ -3,8 +3,21 @@
   <%= link_to "Read on #{@website.name}", @article.url %>
 </div>
 
-<div class="container">
-  <%= raw @article.body %>
+<div class="container double-width">
+
+  <% @paragraphs.each_with_index do |paragraph, index| %>
+    <div class="side-by-side">
+      <div class="side-by-side-paragraph">
+        <%= raw paragraph %>
+      </div>
+      <div class="side-by-side-paragraph">
+        <ul>
+          <li>Tell me more: <%= @article.actions.where(action_type: "tell_me_more", paragraph: index).count %></li>
+          <li>Make it clearer: <%= @article.actions.where(action_type: "make_it_clearer", paragraph: index).count %></li>
+          <li>Prove it: <%= @article.actions.where(action_type: "prove_it", paragraph: index).count %></li>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <%= content_for :menu do %>

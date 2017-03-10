@@ -31,7 +31,7 @@ function queryWebsite() {
       }
     }).done(function(data) {
 
-      var articleUrl = "http://localhost:4000/websites/" + data[0].id + "/" + data[1].id
+      var articleUrl = "http://localhost:4000/websites/" + data[0].id + "/articles/" + data[1].id
 
       // Set up styling
       var stylesheet = document.createElement("link");
@@ -58,20 +58,29 @@ function queryWebsite() {
         $(".whatnow-curtain").remove();
       });
 
-      $(".whatnow-paragraph").on("click", ".whatnow-tell-me-more", function(event) {
-
-      });
-
-      $(".whatnow-paragraph").on("click", ".whatnow-make-it-clearer", function(event) {
-
-      });
-
-      $(".whatnow-paragraph").on("click", ".whatnow-prove-it", function(event) {
-
-      });
-
       $(".whatnow-paragraph").on("click", function(event) {
         event.preventDefault();
+
+        var tell_me_more = 0;
+        var make_it_clearer = 0;
+        var prove_it = 0;
+
+        var index = $(event.currentTarget).parents("p").index(".content-body p");
+
+        for (i = 0; i < data[2].length; i++) {
+
+          if (data[2][i].action_type == "tell_me_more" && data[2][i].paragraph == index) {
+            tell_me_more += 1;
+          }
+
+          if (data[2][i].action_type == "make_it_clearer" && data[2][i].paragraph == index) {
+            make_it_clearer += 1;
+          }
+
+          if (data[2][i].action_type == "prove_it" && data[2][i].paragraph == index) {
+            prove_it += 1;
+          }
+        }
 
         if (!$(event.currentTarget).hasClass("whatnow-paragraph-opened")) {
           $(event.currentTarget).addClass("whatnow-paragraph-opened");
@@ -82,10 +91,55 @@ function queryWebsite() {
             "' ></div>"
           );
 
-          $(".whatnow-actions").append("<a href='#' class='whatnow-button whatnow-tell-me-more'>Tell me more</a>");
-          $(".whatnow-actions").append("<a href='#' class='whatnow-button whatnow-make-it-clearer'>Make it clearer</a>");
-          $(".whatnow-actions").append("<a href='#' class='whatnow-button whatnow-prove-it'>Prove it</a>");
+          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-tell-me-more'>Tell me more</a> <span class='whatnow-count'>" + tell_me_more + " other people also requested</span>");
+          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-make-it-clearer'>Make it clearer</a> <span class='whatnow-count'>" + make_it_clearer + " other people also requested</span>");
+          $(".whatnow-actions").append("<a href='#' style='color: #" + data[0]['foreground_colour'] +"' class='whatnow-button whatnow-prove-it'>Prove it</a> <span class='whatnow-count'>" + prove_it + " other people also requested</span>");
           $("body").append("<a href='#' class='whatnow-curtain'></a>")
+
+          $(".whatnow-tell-me-more").on("click", function(event) {
+            $.ajax({
+              url: articleUrl + "/action",
+              context: document.body,
+              method: "post",
+              data: {
+                action_type: "tell_me_more",
+                paragraph: $(event.currentTarget).parents("p").index(".content-body p")
+              }
+            }).done(function(data) {
+              var count = parseInt($(event.currentTarget).next("span.whatnow-count").html());
+              $(event.currentTarget).next("span.whatnow-count").html(count + 1 + " other people also requested");
+            });
+          });
+
+          $(".whatnow-make-it-clearer").on("click", function(event) {
+            $.ajax({
+              url: articleUrl + "/action",
+              context: document.body,
+              method: "post",
+              data: {
+                action_type: "make_it_clearer",
+                paragraph: $(event.currentTarget).parents("p").index(".content-body p")
+              }
+            }).done(function(data) {
+              var count = parseInt($(event.currentTarget).next("span.whatnow-count").html());
+              $(event.currentTarget).next("span.whatnow-count").html(count + 1 + " other people also requested");
+            });
+          });
+
+          $(".whatnow-prove-it").on("click", function(event) {
+            $.ajax({
+              url: articleUrl + "/action",
+              context: document.body,
+              method: "post",
+              data: {
+                action_type: "prove_it",
+                paragraph: $(event.currentTarget).parents("p").index(".content-body p")
+              }
+            }).done(function(data) {
+              var count = parseInt($(event.currentTarget).next("span.whatnow-count").html());
+              $(event.currentTarget).next("span.whatnow-count").html(count + 1 + " other people also requested");
+            });
+          });
         }
       });
     });

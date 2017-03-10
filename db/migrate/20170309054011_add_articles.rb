@@ -1,8 +1,8 @@
 class AddArticles < ActiveRecord::Migration
   def change
-    create_table :articles, id: :uuid  do |t|
+    create_table :articles  do |t|
       t.string :url, null: false
-      t.belongs_to :website, index: true
+      t.references :website, null: false, index: true
     end
   end
 end

@@ -1,12 +1,23 @@
 class ArticlesController < ApplicationController
   before_action :find_website
-  before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :find_article, only: [:action, :show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, only: [:action]
 
   def index
     @websites = Article.all
   end
 
+  def action
+    @article.actions.create(action_type: params[:action_type], paragraph: params[:paragraph])
+
+    respond_to do |format|
+      format.json { render json: @article.actions }
+    end
+  end
+
   def show
+    @body = @article.body
+    @paragraphs = @body.split(/(<\/p>)/).each_slice(2).map(&:join)
   end
 
   def new

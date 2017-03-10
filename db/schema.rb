@@ -11,22 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310000545) do
+ActiveRecord::Schema.define(version: 20170310004028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "articles", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "actions", force: :cascade do |t|
+    t.string  "action_type", null: false
+    t.integer "paragraph",   null: false
+    t.integer "article_id",  null: false
+  end
+
+  add_index "actions", ["article_id"], name: "index_actions_on_article_id", using: :btree
+
+  create_table "articles", force: :cascade do |t|
     t.string  "url",        null: false
-    t.integer "website_id"
+    t.integer "website_id", null: false
     t.text    "body"
     t.string  "title"
   end
 
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
-  create_table "websites", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "websites", force: :cascade do |t|
     t.string "name",              null: false
     t.string "url",               null: false
     t.string "background_colour"
