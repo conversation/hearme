@@ -56,9 +56,9 @@ class WebsitesController < ApplicationController
 
   def find_or_create_article
     if Article.where(url: params[:href]).any?
-      @article = Article.where(url: params[:href]).first
+      @article = @website.articles.where(url: params[:href]).first
     else
-      @article = Article.create!(url: params[:href])
+      @article = @website.articles.create!(url: params[:href], body: params[:body], title: params[:title])
     end
   end
 

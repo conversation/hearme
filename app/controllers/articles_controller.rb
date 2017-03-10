@@ -34,10 +34,14 @@ class ArticlesController < ApplicationController
   private
 
   def find_website
-    @website = Website.find(params[:id])
+    @website = Website.find(params[:website_id])
+  end
+
+  def find_article
+    @article = @website.articles.where(id: params[:id]).first
   end
 
   def website_params
-    params.require(:website).permit(:name, :url)
+    params.require(:website).permit(:name, :url, :body)
   end
 end

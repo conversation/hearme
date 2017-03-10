@@ -4,7 +4,7 @@
 
   <ul>
     <% @website.articles.each do |article| %>
-      <li><%= article.url %></li>
+      <li><%= link_to article.title, website_article_path(@website, article) %></li>
     <% end %>
   </ul>
 </div>

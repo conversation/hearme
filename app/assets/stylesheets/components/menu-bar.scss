@@ -1,5 +1,7 @@
 .menu-bar {
   background: #eee;
+  flex: 1 120px;
+  min-width: 120px;
 
   ul {
     @include clearfix;
@@ -8,14 +10,10 @@
     margin: 0;
   }
 
-  li {
-    float: left;
-  }
-
   a {
     display: block;
     background: #eee;
-    padding: 20px;
+    padding: 10px;
 
     &:hover {
       background: #fafafa;

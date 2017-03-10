@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309222257) do
+ActiveRecord::Schema.define(version: 20170310000545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20170309222257) do
   create_table "articles", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string  "url",        null: false
     t.integer "website_id"
+    t.text    "body"
+    t.string  "title"
   end
 
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree

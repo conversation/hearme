@@ -25,10 +25,13 @@ function queryWebsite() {
       method: "post",
       data: {
         url: window.location.origin,
-        href: window.location.href
+        href: window.location.href,
+        body: $(".content-body").html(),
+        title: $("h1").text().trim()
       }
     }).done(function(data) {
 
+      var articleUrl = "http://localhost:4000/websites/" + data[0].id + "/" + data[1].id
 
       // Set up styling
       var stylesheet = document.createElement("link");
@@ -55,6 +58,18 @@ function queryWebsite() {
         $(".whatnow-curtain").remove();
       });
 
+      $(".whatnow-paragraph").on("click", ".whatnow-tell-me-more", function(event) {
+
+      });
+
+      $(".whatnow-paragraph").on("click", ".whatnow-make-it-clearer", function(event) {
+
+      });
+
+      $(".whatnow-paragraph").on("click", ".whatnow-prove-it", function(event) {
+
+      });
+
       $(".whatnow-paragraph").on("click", function(event) {
         event.preventDefault();
 
@@ -66,6 +81,7 @@ function queryWebsite() {
             "; color: #" + data[0]['foreground_colour'] +
             "' ></div>"
           );
+
           $(".whatnow-actions").append("<a href='#' class='whatnow-button whatnow-tell-me-more'>Tell me more</a>");
           $(".whatnow-actions").append("<a href='#' class='whatnow-button whatnow-make-it-clearer'>Make it clearer</a>");
           $(".whatnow-actions").append("<a href='#' class='whatnow-button whatnow-prove-it'>Prove it</a>");

@@ -1,0 +1,12 @@
+<div class="container">
+  <h1><%= @article.title %></h1>
+  <%= link_to "Read on #{@website.name}", @article.url %>
+</div>
+
+<div class="container">
+  <%= raw @article.body %>
+</div>
+
+<%= content_for :menu do %>
+  <li><%= link_to "Articles", website_path(@website) %></li>
+<% end %>
